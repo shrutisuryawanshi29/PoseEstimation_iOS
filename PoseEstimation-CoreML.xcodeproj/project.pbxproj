@@ -8,13 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		0E13519C2AD76F7D0062B4A2 /* ModelHandler1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E13519B2AD76F7D0062B4A2 /* ModelHandler1.swift */; };
-		0E1351A32AD76FC50062B4A2 /* PAM.required_operators.with_runtime_opt.config in Resources */ = {isa = PBXBuildFile; fileRef = 0E13519E2AD76FC30062B4A2 /* PAM.required_operators.with_runtime_opt.config */; };
-		0E1351A42AD76FC50062B4A2 /* PAM.with_runtime_opt.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0E13519F2AD76FC40062B4A2 /* PAM.with_runtime_opt.ort */; };
-		0E1351A52AD76FC50062B4A2 /* PAM.required_operators.config in Resources */ = {isa = PBXBuildFile; fileRef = 0E1351A02AD76FC40062B4A2 /* PAM.required_operators.config */; };
-		0E1351A62AD76FC50062B4A2 /* PAM.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 0E1351A12AD76FC50062B4A2 /* PAM.onnx */; };
-		0E1351A72AD76FC50062B4A2 /* PAM.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0E1351A22AD76FC50062B4A2 /* PAM.ort */; };
 		0E97F9DB2ADDC9990055C1AA /* ThreeDPAMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E97F9DA2ADDC9990055C1AA /* ThreeDPAMViewController.swift */; };
 		0EA467F82AC4A9C5007CA0CF /* ModelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA467F72AC4A9C5007CA0CF /* ModelHandler.swift */; };
+		0EAF4CCF2B96959800EDB417 /* rtmpose-m-27c0e6.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CCA2B96959800EDB417 /* rtmpose-m-27c0e6.onnx */; };
+		0EAF4CD02B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.config in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CCB2B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.config */; };
+		0EAF4CD12B96959800EDB417 /* rtmpose-m-27c0e6.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CCC2B96959800EDB417 /* rtmpose-m-27c0e6.ort */; };
+		0EAF4CD22B96959800EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CCD2B96959800EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort */; };
+		0EAF4CD32B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CCE2B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config */; };
+		0EAF4CDA2B9695BB00EDB417 /* PAM.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CD52B9695BB00EDB417 /* PAM.onnx */; };
+		0EAF4CDB2B9695BB00EDB417 /* PAM.with_runtime_opt.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CD62B9695BB00EDB417 /* PAM.with_runtime_opt.ort */; };
+		0EAF4CDC2B9695BB00EDB417 /* PAM.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CD72B9695BB00EDB417 /* PAM.ort */; };
+		0EAF4CDD2B9695BB00EDB417 /* PAM.required_operators.with_runtime_opt.config in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CD82B9695BB00EDB417 /* PAM.required_operators.with_runtime_opt.config */; };
+		0EAF4CDE2B9695BB00EDB417 /* PAM.required_operators.config in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CD92B9695BB00EDB417 /* PAM.required_operators.config */; };
+		0EAF4CE82B96968D00EDB417 /* yolo_nas_pose_l.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4CE02B96968C00EDB417 /* yolo_nas_pose_l.mlpackage */; };
+		0EAF4CE92B96968D00EDB417 /* yolov8l-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4CE12B96968C00EDB417 /* yolov8l-pose.mlpackage */; };
+		0EAF4CEA2B96968D00EDB417 /* yolov8s-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4CE22B96968C00EDB417 /* yolov8s-pose.mlpackage */; };
+		0EAF4CEB2B96968D00EDB417 /* yolov8x-pose-p6.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4CE32B96968C00EDB417 /* yolov8x-pose-p6.mlpackage */; };
+		0EAF4CEC2B96968D00EDB417 /* yolov8m-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4CE42B96968C00EDB417 /* yolov8m-pose.mlpackage */; };
+		0EAF4CED2B96968D00EDB417 /* yolo_nas_l.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CE52B96968C00EDB417 /* yolo_nas_l.onnx */; };
+		0EAF4CEE2B96968D00EDB417 /* yolov8x-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4CE62B96968D00EDB417 /* yolov8x-pose.mlpackage */; };
+		0EAF4CEF2B96968D00EDB417 /* yolov8n-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4CE72B96968D00EDB417 /* yolov8n-pose.mlpackage */; };
 		0ECC89412ADF5DCD00490FD3 /* HumanKeypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89402ADF5DCD00490FD3 /* HumanKeypoints.swift */; };
 		0ECC89432ADF5E3C00490FD3 /* Pose3DSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89422ADF5E3C00490FD3 /* Pose3DSceneView.swift */; };
 		0ECFD8502ACF38D600BF11CE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECFD84F2ACF38D600BF11CE /* Utils.swift */; };
@@ -60,27 +73,27 @@
 /* Begin PBXFileReference section */
 		01F7DCB567933F4F7BDDD74F /* Pods-PoseEstimation-CoreMLTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoseEstimation-CoreMLTests.release.xcconfig"; path = "Target Support Files/Pods-PoseEstimation-CoreMLTests/Pods-PoseEstimation-CoreMLTests.release.xcconfig"; sourceTree = "<group>"; };
 		0E13519B2AD76F7D0062B4A2 /* ModelHandler1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelHandler1.swift; sourceTree = "<group>"; };
-		0E13519E2AD76FC30062B4A2 /* PAM.required_operators.with_runtime_opt.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PAM.required_operators.with_runtime_opt.config; sourceTree = "<group>"; };
-		0E13519F2AD76FC40062B4A2 /* PAM.with_runtime_opt.ort */ = {isa = PBXFileReference; lastKnownFileType = file; path = PAM.with_runtime_opt.ort; sourceTree = "<group>"; };
-		0E1351A02AD76FC40062B4A2 /* PAM.required_operators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PAM.required_operators.config; sourceTree = "<group>"; };
-		0E1351A12AD76FC50062B4A2 /* PAM.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; path = PAM.onnx; sourceTree = "<group>"; };
-		0E1351A22AD76FC50062B4A2 /* PAM.ort */ = {isa = PBXFileReference; lastKnownFileType = file; path = PAM.ort; sourceTree = "<group>"; };
 		0E97F9DA2ADDC9990055C1AA /* ThreeDPAMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDPAMViewController.swift; sourceTree = "<group>"; };
 		0EA467E82AC4A4EE007CA0CF /* PoseEstimation-CoreML-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PoseEstimation-CoreML-Bridging-Header.h"; sourceTree = "<group>"; };
 		0EA467F72AC4A9C5007CA0CF /* ModelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHandler.swift; sourceTree = "<group>"; };
-		0EAF4C8D2B963D2A00EDB417 /* yolo_nas_pose_l.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = yolo_nas_pose_l.mlpackage; sourceTree = "<group>"; };
-		0EAF4C8E2B963D2A00EDB417 /* yolov8s-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolov8s-pose.mlpackage"; sourceTree = "<group>"; };
-		0EAF4C8F2B963D2A00EDB417 /* yolov8x-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolov8x-pose.mlpackage"; sourceTree = "<group>"; };
-		0EAF4C902B963D2A00EDB417 /* yolov8l-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolov8l-pose.mlpackage"; sourceTree = "<group>"; };
-		0EAF4C912B963D2A00EDB417 /* yolov8m-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolov8m-pose.mlpackage"; sourceTree = "<group>"; };
-		0EAF4C922B963D2A00EDB417 /* yolov8x-pose-p6.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolov8x-pose-p6.mlpackage"; sourceTree = "<group>"; };
-		0EAF4C932B963D2A00EDB417 /* yolov8n-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = "yolov8n-pose.mlpackage"; sourceTree = "<group>"; };
-		0EAF4CAA2B963D4600EDB417 /* yolo_nas_l.onnx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = yolo_nas_l.onnx; sourceTree = "<group>"; };
-		0EAF4CAD2B963D6200EDB417 /* rtmpose-m-27c0e6.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rtmpose-m-27c0e6.onnx"; sourceTree = "<group>"; };
-		0EAF4CAE2B963D6200EDB417 /* rtmpose-m-27c0e6.ort */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rtmpose-m-27c0e6.ort"; sourceTree = "<group>"; };
-		0EAF4CAF2B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "rtmpose-m-27c0e6.required_operators.with_runtime_opt.config"; sourceTree = "<group>"; };
-		0EAF4CB02B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "rtmpose-m-27c0e6.required_operators.config"; sourceTree = "<group>"; };
-		0EAF4CB12B963D6200EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort */ = {isa = PBXFileReference; lastKnownFileType = file; path = "rtmpose-m-27c0e6.with_runtime_opt.ort"; sourceTree = "<group>"; };
+		0EAF4CCA2B96959800EDB417 /* rtmpose-m-27c0e6.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "rtmpose-m-27c0e6.onnx"; path = "../../../ModelsAndData/rtmpose-m-27c0e6.onnx"; sourceTree = "<group>"; };
+		0EAF4CCB2B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "rtmpose-m-27c0e6.required_operators.config"; path = "../../../ModelsAndData/rtmpose-m-27c0e6.required_operators.config"; sourceTree = "<group>"; };
+		0EAF4CCC2B96959800EDB417 /* rtmpose-m-27c0e6.ort */ = {isa = PBXFileReference; lastKnownFileType = file; name = "rtmpose-m-27c0e6.ort"; path = "../../../ModelsAndData/rtmpose-m-27c0e6.ort"; sourceTree = "<group>"; };
+		0EAF4CCD2B96959800EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort */ = {isa = PBXFileReference; lastKnownFileType = file; name = "rtmpose-m-27c0e6.with_runtime_opt.ort"; path = "../../../ModelsAndData/rtmpose-m-27c0e6.with_runtime_opt.ort"; sourceTree = "<group>"; };
+		0EAF4CCE2B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "rtmpose-m-27c0e6.required_operators.with_runtime_opt.config"; path = "../../../ModelsAndData/rtmpose-m-27c0e6.required_operators.with_runtime_opt.config"; sourceTree = "<group>"; };
+		0EAF4CD52B9695BB00EDB417 /* PAM.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; name = PAM.onnx; path = ../../../ONNX/PAM.onnx; sourceTree = "<group>"; };
+		0EAF4CD62B9695BB00EDB417 /* PAM.with_runtime_opt.ort */ = {isa = PBXFileReference; lastKnownFileType = file; name = PAM.with_runtime_opt.ort; path = ../../../ONNX/PAM.with_runtime_opt.ort; sourceTree = "<group>"; };
+		0EAF4CD72B9695BB00EDB417 /* PAM.ort */ = {isa = PBXFileReference; lastKnownFileType = file; name = PAM.ort; path = ../../../ONNX/PAM.ort; sourceTree = "<group>"; };
+		0EAF4CD82B9695BB00EDB417 /* PAM.required_operators.with_runtime_opt.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PAM.required_operators.with_runtime_opt.config; path = ../../../ONNX/PAM.required_operators.with_runtime_opt.config; sourceTree = "<group>"; };
+		0EAF4CD92B9695BB00EDB417 /* PAM.required_operators.config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PAM.required_operators.config; path = ../../../ONNX/PAM.required_operators.config; sourceTree = "<group>"; };
+		0EAF4CE02B96968C00EDB417 /* yolo_nas_pose_l.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; name = yolo_nas_pose_l.mlpackage; path = "../../../YOLOv8 Pose/yolo_nas_pose_l.mlpackage"; sourceTree = "<group>"; };
+		0EAF4CE12B96968C00EDB417 /* yolov8l-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; name = "yolov8l-pose.mlpackage"; path = "../../../YOLOv8 Pose/yolov8l-pose.mlpackage"; sourceTree = "<group>"; };
+		0EAF4CE22B96968C00EDB417 /* yolov8s-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; name = "yolov8s-pose.mlpackage"; path = "../../../YOLOv8 Pose/yolov8s-pose.mlpackage"; sourceTree = "<group>"; };
+		0EAF4CE32B96968C00EDB417 /* yolov8x-pose-p6.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; name = "yolov8x-pose-p6.mlpackage"; path = "../../../YOLOv8 Pose/yolov8x-pose-p6.mlpackage"; sourceTree = "<group>"; };
+		0EAF4CE42B96968C00EDB417 /* yolov8m-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; name = "yolov8m-pose.mlpackage"; path = "../../../YOLOv8 Pose/yolov8m-pose.mlpackage"; sourceTree = "<group>"; };
+		0EAF4CE52B96968C00EDB417 /* yolo_nas_l.onnx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yolo_nas_l.onnx; path = "../../../YOLOv8 Pose/yolo_nas_l.onnx"; sourceTree = "<group>"; };
+		0EAF4CE62B96968D00EDB417 /* yolov8x-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; name = "yolov8x-pose.mlpackage"; path = "../../../YOLOv8 Pose/yolov8x-pose.mlpackage"; sourceTree = "<group>"; };
+		0EAF4CE72B96968D00EDB417 /* yolov8n-pose.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; name = "yolov8n-pose.mlpackage"; path = "../../../YOLOv8 Pose/yolov8n-pose.mlpackage"; sourceTree = "<group>"; };
 		0ECC89402ADF5DCD00490FD3 /* HumanKeypoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanKeypoints.swift; sourceTree = "<group>"; };
 		0ECC89422ADF5E3C00490FD3 /* Pose3DSceneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pose3DSceneView.swift; sourceTree = "<group>"; };
 		0ECFD84F2ACF38D600BF11CE /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -136,18 +149,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E13519D2AD76FA20062B4A2 /* ONNX */ = {
-			isa = PBXGroup;
-			children = (
-				0E1351A12AD76FC50062B4A2 /* PAM.onnx */,
-				0E1351A22AD76FC50062B4A2 /* PAM.ort */,
-				0E1351A02AD76FC40062B4A2 /* PAM.required_operators.config */,
-				0E13519E2AD76FC30062B4A2 /* PAM.required_operators.with_runtime_opt.config */,
-				0E13519F2AD76FC40062B4A2 /* PAM.with_runtime_opt.ort */,
-			);
-			path = ONNX;
-			sourceTree = "<group>";
-		};
 		0E97F9D92ADDC9750055C1AA /* 3D PAM */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,31 +169,43 @@
 			path = ONNX;
 			sourceTree = "<group>";
 		};
-		0EAF4C8C2B963D2A00EDB417 /* YOLOv8 Pose */ = {
+		0EAF4CC92B96958900EDB417 /* ModelsAndData */ = {
 			isa = PBXGroup;
 			children = (
-				0EAF4C8D2B963D2A00EDB417 /* yolo_nas_pose_l.mlpackage */,
-				0EAF4CAA2B963D4600EDB417 /* yolo_nas_l.onnx */,
-				0EAF4C8E2B963D2A00EDB417 /* yolov8s-pose.mlpackage */,
-				0EAF4C8F2B963D2A00EDB417 /* yolov8x-pose.mlpackage */,
-				0EAF4C902B963D2A00EDB417 /* yolov8l-pose.mlpackage */,
-				0EAF4C912B963D2A00EDB417 /* yolov8m-pose.mlpackage */,
-				0EAF4C922B963D2A00EDB417 /* yolov8x-pose-p6.mlpackage */,
-				0EAF4C932B963D2A00EDB417 /* yolov8n-pose.mlpackage */,
-			);
-			path = "YOLOv8 Pose";
-			sourceTree = "<group>";
-		};
-		0EAF4CAC2B963D6200EDB417 /* ModelsAndData */ = {
-			isa = PBXGroup;
-			children = (
-				0EAF4CAD2B963D6200EDB417 /* rtmpose-m-27c0e6.onnx */,
-				0EAF4CAE2B963D6200EDB417 /* rtmpose-m-27c0e6.ort */,
-				0EAF4CAF2B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config */,
-				0EAF4CB02B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.config */,
-				0EAF4CB12B963D6200EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort */,
+				0EAF4CCA2B96959800EDB417 /* rtmpose-m-27c0e6.onnx */,
+				0EAF4CCC2B96959800EDB417 /* rtmpose-m-27c0e6.ort */,
+				0EAF4CCB2B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.config */,
+				0EAF4CCE2B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config */,
+				0EAF4CCD2B96959800EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort */,
 			);
 			path = ModelsAndData;
+			sourceTree = "<group>";
+		};
+		0EAF4CD42B9695B400EDB417 /* ONNX */ = {
+			isa = PBXGroup;
+			children = (
+				0EAF4CD52B9695BB00EDB417 /* PAM.onnx */,
+				0EAF4CD72B9695BB00EDB417 /* PAM.ort */,
+				0EAF4CD92B9695BB00EDB417 /* PAM.required_operators.config */,
+				0EAF4CD82B9695BB00EDB417 /* PAM.required_operators.with_runtime_opt.config */,
+				0EAF4CD62B9695BB00EDB417 /* PAM.with_runtime_opt.ort */,
+			);
+			path = ONNX;
+			sourceTree = "<group>";
+		};
+		0EAF4CDF2B96968300EDB417 /* YOLOv8 Pose */ = {
+			isa = PBXGroup;
+			children = (
+				0EAF4CE52B96968C00EDB417 /* yolo_nas_l.onnx */,
+				0EAF4CE02B96968C00EDB417 /* yolo_nas_pose_l.mlpackage */,
+				0EAF4CE12B96968C00EDB417 /* yolov8l-pose.mlpackage */,
+				0EAF4CE42B96968C00EDB417 /* yolov8m-pose.mlpackage */,
+				0EAF4CE72B96968D00EDB417 /* yolov8n-pose.mlpackage */,
+				0EAF4CE22B96968C00EDB417 /* yolov8s-pose.mlpackage */,
+				0EAF4CE32B96968C00EDB417 /* yolov8x-pose-p6.mlpackage */,
+				0EAF4CE62B96968D00EDB417 /* yolov8x-pose.mlpackage */,
+			);
+			path = "YOLOv8 Pose";
 			sourceTree = "<group>";
 		};
 		1628F18C2A878799A01E501F /* Pods */ = {
@@ -270,9 +283,9 @@
 		557F531120ED252100CFCCD7 /* PoseEstimation-CoreML */ = {
 			isa = PBXGroup;
 			children = (
-				0EAF4CAC2B963D6200EDB417 /* ModelsAndData */,
-				0EAF4C8C2B963D2A00EDB417 /* YOLOv8 Pose */,
-				0E13519D2AD76FA20062B4A2 /* ONNX */,
+				0EAF4CDF2B96968300EDB417 /* YOLOv8 Pose */,
+				0EAF4CD42B9695B400EDB417 /* ONNX */,
+				0EAF4CC92B96958900EDB417 /* ModelsAndData */,
 				71F1455122F1C890000ED787 /* model_cpm.mlmodel */,
 				71F1455222F1C890000ED787 /* model_hourglass.mlmodel */,
 				557F531220ED252100CFCCD7 /* AppDelegate.swift */,
@@ -410,14 +423,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E1351A32AD76FC50062B4A2 /* PAM.required_operators.with_runtime_opt.config in Resources */,
-				0E1351A42AD76FC50062B4A2 /* PAM.with_runtime_opt.ort in Resources */,
+				0EAF4CCF2B96959800EDB417 /* rtmpose-m-27c0e6.onnx in Resources */,
+				0EAF4CED2B96968D00EDB417 /* yolo_nas_l.onnx in Resources */,
+				0EAF4CD12B96959800EDB417 /* rtmpose-m-27c0e6.ort in Resources */,
+				0EAF4CD02B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.config in Resources */,
 				557F531D20ED252400CFCCD7 /* LaunchScreen.storyboard in Resources */,
+				0EAF4CDB2B9695BB00EDB417 /* PAM.with_runtime_opt.ort in Resources */,
+				0EAF4CDE2B9695BB00EDB417 /* PAM.required_operators.config in Resources */,
 				557F531A20ED252400CFCCD7 /* Assets.xcassets in Resources */,
+				0EAF4CDA2B9695BB00EDB417 /* PAM.onnx in Resources */,
 				557F531820ED252100CFCCD7 /* Main.storyboard in Resources */,
-				0E1351A52AD76FC50062B4A2 /* PAM.required_operators.config in Resources */,
-				0E1351A62AD76FC50062B4A2 /* PAM.onnx in Resources */,
-				0E1351A72AD76FC50062B4A2 /* PAM.ort in Resources */,
+				0EAF4CDD2B9695BB00EDB417 /* PAM.required_operators.with_runtime_opt.config in Resources */,
+				0EAF4CD32B96959800EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config in Resources */,
+				0EAF4CD22B96959800EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort in Resources */,
+				0EAF4CDC2B9695BB00EDB417 /* PAM.ort in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EAF4CEE2B96968D00EDB417 /* yolov8x-pose.mlpackage in Sources */,
 				71F1455322F1C890000ED787 /* model_cpm.mlmodel in Sources */,
 				55AAFB1C21128863000B21A3 /* HeatmapViewController.swift in Sources */,
 				71EF2DC122C3662A009391C8 /* MovingAverageFilter.swift in Sources */,
@@ -495,6 +515,8 @@
 				55AAFB1E21128AB6000B21A3 /* DrawingHeatmapView.swift in Sources */,
 				71F1455422F1C890000ED787 /* model_hourglass.mlmodel in Sources */,
 				557F532720ED25B000CFCCD7 /* VideoCapture.swift in Sources */,
+				0EAF4CEF2B96968D00EDB417 /* yolov8n-pose.mlpackage in Sources */,
+				0EAF4CE82B96968D00EDB417 /* yolo_nas_pose_l.mlpackage in Sources */,
 				0EA467F82AC4A9C5007CA0CF /* ModelHandler.swift in Sources */,
 				555B477421F61234009026AB /* DrawingJointView.swift in Sources */,
 				0E97F9DB2ADDC9990055C1AA /* ThreeDPAMViewController.swift in Sources */,
@@ -504,11 +526,15 @@
 				0E13519C2AD76F7D0062B4A2 /* ModelHandler1.swift in Sources */,
 				554F14822202B68300B828B0 /* UIImage+CVPixelBuffer.swift in Sources */,
 				0ECC89412ADF5DCD00490FD3 /* HumanKeypoints.swift in Sources */,
+				0EAF4CEB2B96968D00EDB417 /* yolov8x-pose-p6.mlpackage in Sources */,
 				0ECFD8502ACF38D600BF11CE /* Utils.swift in Sources */,
+				0EAF4CE92B96968D00EDB417 /* yolov8l-pose.mlpackage in Sources */,
+				0EAF4CEA2B96968D00EDB417 /* yolov8s-pose.mlpackage in Sources */,
 				557F532820ED25B000CFCCD7 /* Measure.swift in Sources */,
 				714087F32302E7AC00F7EDF4 /* PoseMatchingViewController.swift in Sources */,
 				557F531320ED252100CFCCD7 /* AppDelegate.swift in Sources */,
 				71EF2DC522C4878D009391C8 /* PredictedPoint.swift in Sources */,
+				0EAF4CEC2B96968D00EDB417 /* yolov8m-pose.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
