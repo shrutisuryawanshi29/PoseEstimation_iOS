@@ -1,0 +1,6 @@
+framework module TFLiteSwift_Vision {
+  umbrella header "TFLiteSwift-Vision-umbrella.h"
+
+  export *
+  module * { export * }
+}
