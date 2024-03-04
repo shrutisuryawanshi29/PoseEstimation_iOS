@@ -15,19 +15,6 @@
 		0E1351A72AD76FC50062B4A2 /* PAM.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0E1351A22AD76FC50062B4A2 /* PAM.ort */; };
 		0E97F9DB2ADDC9990055C1AA /* ThreeDPAMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E97F9DA2ADDC9990055C1AA /* ThreeDPAMViewController.swift */; };
 		0EA467F82AC4A9C5007CA0CF /* ModelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA467F72AC4A9C5007CA0CF /* ModelHandler.swift */; };
-		0EAF4C9C2B963D2B00EDB417 /* yolo_nas_pose_l.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4C8D2B963D2A00EDB417 /* yolo_nas_pose_l.mlpackage */; };
-		0EAF4C9D2B963D2B00EDB417 /* yolov8s-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4C8E2B963D2A00EDB417 /* yolov8s-pose.mlpackage */; };
-		0EAF4C9E2B963D2B00EDB417 /* yolov8x-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4C8F2B963D2A00EDB417 /* yolov8x-pose.mlpackage */; };
-		0EAF4C9F2B963D2B00EDB417 /* yolov8l-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4C902B963D2A00EDB417 /* yolov8l-pose.mlpackage */; };
-		0EAF4CA02B963D2B00EDB417 /* yolov8m-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4C912B963D2A00EDB417 /* yolov8m-pose.mlpackage */; };
-		0EAF4CA12B963D2B00EDB417 /* yolov8x-pose-p6.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4C922B963D2A00EDB417 /* yolov8x-pose-p6.mlpackage */; };
-		0EAF4CA22B963D2B00EDB417 /* yolov8n-pose.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF4C932B963D2A00EDB417 /* yolov8n-pose.mlpackage */; };
-		0EAF4CAB2B963D4600EDB417 /* yolo_nas_l.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CAA2B963D4600EDB417 /* yolo_nas_l.onnx */; };
-		0EAF4CB22B963D6200EDB417 /* rtmpose-m-27c0e6.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CAD2B963D6200EDB417 /* rtmpose-m-27c0e6.onnx */; };
-		0EAF4CB32B963D6200EDB417 /* rtmpose-m-27c0e6.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CAE2B963D6200EDB417 /* rtmpose-m-27c0e6.ort */; };
-		0EAF4CB42B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CAF2B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config */; };
-		0EAF4CB52B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.config in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CB02B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.config */; };
-		0EAF4CB62B963D6200EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort in Resources */ = {isa = PBXBuildFile; fileRef = 0EAF4CB12B963D6200EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort */; };
 		0ECC89412ADF5DCD00490FD3 /* HumanKeypoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89402ADF5DCD00490FD3 /* HumanKeypoints.swift */; };
 		0ECC89432ADF5E3C00490FD3 /* Pose3DSceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECC89422ADF5E3C00490FD3 /* Pose3DSceneView.swift */; };
 		0ECFD8502ACF38D600BF11CE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECFD84F2ACF38D600BF11CE /* Utils.swift */; };
@@ -423,16 +410,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EAF4CB22B963D6200EDB417 /* rtmpose-m-27c0e6.onnx in Resources */,
-				0EAF4CB62B963D6200EDB417 /* rtmpose-m-27c0e6.with_runtime_opt.ort in Resources */,
-				0EAF4CAB2B963D4600EDB417 /* yolo_nas_l.onnx in Resources */,
-				0EAF4CB52B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.config in Resources */,
 				0E1351A32AD76FC50062B4A2 /* PAM.required_operators.with_runtime_opt.config in Resources */,
-				0EAF4CB32B963D6200EDB417 /* rtmpose-m-27c0e6.ort in Resources */,
 				0E1351A42AD76FC50062B4A2 /* PAM.with_runtime_opt.ort in Resources */,
 				557F531D20ED252400CFCCD7 /* LaunchScreen.storyboard in Resources */,
 				557F531A20ED252400CFCCD7 /* Assets.xcassets in Resources */,
-				0EAF4CB42B963D6200EDB417 /* rtmpose-m-27c0e6.required_operators.with_runtime_opt.config in Resources */,
 				557F531820ED252100CFCCD7 /* Main.storyboard in Resources */,
 				0E1351A52AD76FC50062B4A2 /* PAM.required_operators.config in Resources */,
 				0E1351A62AD76FC50062B4A2 /* PAM.onnx in Resources */,
@@ -511,20 +492,14 @@
 				0EE22BB02B06BA2B00B05F30 /* HumanBodySkeletonRenderer.swift in Sources */,
 				557F531520ED252100CFCCD7 /* JointViewController.swift in Sources */,
 				7165F7592271772A0010F164 /* StillImageHeatmapViewController.swift in Sources */,
-				0EAF4C9E2B963D2B00EDB417 /* yolov8x-pose.mlpackage in Sources */,
 				55AAFB1E21128AB6000B21A3 /* DrawingHeatmapView.swift in Sources */,
 				71F1455422F1C890000ED787 /* model_hourglass.mlmodel in Sources */,
 				557F532720ED25B000CFCCD7 /* VideoCapture.swift in Sources */,
-				0EAF4CA22B963D2B00EDB417 /* yolov8n-pose.mlpackage in Sources */,
-				0EAF4C9F2B963D2B00EDB417 /* yolov8l-pose.mlpackage in Sources */,
-				0EAF4C9C2B963D2B00EDB417 /* yolo_nas_pose_l.mlpackage in Sources */,
 				0EA467F82AC4A9C5007CA0CF /* ModelHandler.swift in Sources */,
 				555B477421F61234009026AB /* DrawingJointView.swift in Sources */,
 				0E97F9DB2ADDC9990055C1AA /* ThreeDPAMViewController.swift in Sources */,
 				0ECC89432ADF5E3C00490FD3 /* Pose3DSceneView.swift in Sources */,
 				714D590F2377F87A00BBE1DC /* HeatmapsViewController.swift in Sources */,
-				0EAF4CA12B963D2B00EDB417 /* yolov8x-pose-p6.mlpackage in Sources */,
-				0EAF4C9D2B963D2B00EDB417 /* yolov8s-pose.mlpackage in Sources */,
 				71EF2DC322C469FD009391C8 /* HeatmapPostProcessor.swift in Sources */,
 				0E13519C2AD76F7D0062B4A2 /* ModelHandler1.swift in Sources */,
 				554F14822202B68300B828B0 /* UIImage+CVPixelBuffer.swift in Sources */,
@@ -534,7 +509,6 @@
 				714087F32302E7AC00F7EDF4 /* PoseMatchingViewController.swift in Sources */,
 				557F531320ED252100CFCCD7 /* AppDelegate.swift in Sources */,
 				71EF2DC522C4878D009391C8 /* PredictedPoint.swift in Sources */,
-				0EAF4CA02B963D2B00EDB417 /* yolov8m-pose.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
