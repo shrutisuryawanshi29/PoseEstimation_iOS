@@ -390,30 +390,71 @@ extension JointViewController {
         print(modelHandler)
     }
     
+//    func runModel(onPixelBuffer pixelBuffer: CVPixelBuffer) {
+//        let currentTimeMs = Date().timeIntervalSince1970 * 1000
+////        guard (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs
+////        else { return }
+////        previousInferenceTimeMs = currentTimeMs
+//
+//
+//        // Display results by the `InferenceViewController`.
+//        DispatchQueue.main.async {
+//            let resolution = CGSize(width: CVPixelBufferGetWidth(pixelBuffer),
+//                                    height: CVPixelBufferGetHeight(pixelBuffer))
+////            self.inferenceViewController?.resolution = resolution
+////
+////            var inferenceTime: Double = 0
+////            if let resultInferenceTime = self.result?.processTimeMs {
+////                inferenceTime = resultInferenceTime
+////            }
+////            self.inferenceViewController?.inferenceTime = inferenceTime
+////            self.inferenceViewController?.tableView.reloadData()
+////
+////            // Draw bounding boxes and compute the inference score
+////            self.drawBoundingBoxesAndCalculate(onInferences: displayResult.inferences,
+////                                               withImageSize: CGSize(width: CVPixelBufferGetWidth(pixelBuffer),
+////                                                                     height: CVPixelBufferGetHeight(pixelBuffer)))
+//        }
+//    }
+    
     func runModel(onPixelBuffer pixelBuffer: CVPixelBuffer) {
-        let currentTimeMs = Date().timeIntervalSince1970 * 1000
-//        guard (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs
-//        else { return }
-//        previousInferenceTimeMs = currentTimeMs
+        // let currentTimeMs = Date().timeIntervalSince1970 * 1000
+        //        guard (currentTimeMs - previousInferenceTimeMs) >= delayBetweenInferencesMs
+        //        else { return }
+        //        previousInferenceTimeMs = currentTimeMs
         
+        //var result: Result?
         
-        // Display results by the `InferenceViewController`.
-        DispatchQueue.main.async {
-            let resolution = CGSize(width: CVPixelBufferGetWidth(pixelBuffer),
-                                    height: CVPixelBufferGetHeight(pixelBuffer))
-//            self.inferenceViewController?.resolution = resolution
-//            
-//            var inferenceTime: Double = 0
-//            if let resultInferenceTime = self.result?.processTimeMs {
-//                inferenceTime = resultInferenceTime
-//            }
-//            self.inferenceViewController?.inferenceTime = inferenceTime
-//            self.inferenceViewController?.tableView.reloadData()
-//            
-//            // Draw bounding boxes and compute the inference score
-//            self.drawBoundingBoxesAndCalculate(onInferences: displayResult.inferences,
-//                                               withImageSize: CGSize(width: CVPixelBufferGetWidth(pixelBuffer),
-//                                                                     height: CVPixelBufferGetHeight(pixelBuffer)))
+        let  pp: [Prediction]? = try! self.modelHandler?.runModelyolonas(modelType: .YOLO_NAS_POSE_L, onPixelBuffer: pixelBuffer)
+        visionRequestDidCompleteForYolonas( answer:pp)
+        print("pp is \(String(describing: pp))")
+        //draw yolonas
+        
+        // guard let displayResult = result elsemodelHandler {
+        //   return
+    }
+    
+    func visionRequestDidCompleteForYolonas(answer pp: [Prediction]?) {
+        if #available(iOS 12.0, *) {
+            os_signpost(.event, log: refreshLog, name: "PoseEstimation")
+        }
+        self.👨‍🔧.🏷(with: "endInference")
+        //if let observations = request.results as? [VNCoreMLFeatureValueObservation],
+        //let heatmaps = observations.first?.featureValue.multiArrayValue {
+        
+        DispatchQueue.main.sync {
+            self.jointView.bodyPoints = []
+            //print("observations is=\(observations)")
+            // draw line
+            self.jointView.bodyPointsForYOLONAS = (pp)!//answer//(self.modelHandler?.parsePoseYOLOv8(results: observations, modelType: currModelType))!
+            //try DrawingJointView?.drawKeypointsYOLO(with: self.jointView.bodyPointsForYOLO)
+            // end of measure
+            //self.👨‍🔧.🎬🤚()
+            //self.isInferencing = false
+            
+            if #available(iOS 12.0, *) {
+                os_signpost(.end, log: refreshLog, name: "PoseEstimation")
+            }
         }
     }
     

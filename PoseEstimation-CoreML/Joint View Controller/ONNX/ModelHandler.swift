@@ -47,13 +47,13 @@ enum OrtModelError: Error {
 
 class ModelHandler: NSObject {
     // MARK: - Inference Properties
-
+    
     let threadCount: Int32
     let threshold: Float = 0.5
     let threadCountLimit = 10
     
     // MARK: - Model Parameters
-
+    
     let batchSize = 1
     let inputChannels = 3
     let inputWidth = 192
@@ -105,12 +105,12 @@ class ModelHandler: NSObject {
             print("Failed to create ORTSession.")
             return nil
         }
-       
+        
         super.init()
         
         //labels = loadLabels(fileInfo: labelsFileInfo)
     }
-
+    
     // This method preprocesses the image, runs the ort inferencesession and returns the inference result
     func runModel(inputData: [CGFloat]) throws -> [Float32]{
         
@@ -129,9 +129,9 @@ class ModelHandler: NSObject {
             let inputShape1: [NSNumber] = [1, 34] // The shape of the input tensor
             
             // Fill inputData with random values
-//            for i in 0..<inputData.count {
-//                inputData[i] = Float.random(in: 0.0..<1.0)
-//            }
+            //            for i in 0..<inputData.count {
+            //                inputData[i] = Float.random(in: 0.0..<1.0)
+            //            }
             
             // Convert input data to NSMutableData
             let inputTensorData = NSMutableData(bytes: inputData, length: inputData.count * MemoryLayout<Float>.size)
@@ -168,21 +168,21 @@ class ModelHandler: NSObject {
             print("The value of output is is \(outputArr)")
             print("the shape of output is \(outputArr.count)")
             
-//            let reshapedArray = outputArr
-//                .enumerated()
-//                .map { (index, element) -> (Int, Int, Float) in
-//                    let rowIndex = index / 3
-//                    let columnIndex = index % 3
-//                    return (rowIndex, columnIndex, element)
-//                }
-//                .reduce(into: [[Int]](repeating: [Int](repeating: 0, count: 3), count: 17)) { (result, element) in
-//                    result[element.0][element.1] = Int(element.2)
-//                }
-//            
-//            // Print the reshaped array
-//            for row in reshapedArray {
-//                print(row)
-//            }
+            //            let reshapedArray = outputArr
+            //                .enumerated()
+            //                .map { (index, element) -> (Int, Int, Float) in
+            //                    let rowIndex = index / 3
+            //                    let columnIndex = index % 3
+            //                    return (rowIndex, columnIndex, element)
+            //                }
+            //                .reduce(into: [[Int]](repeating: [Int](repeating: 0, count: 3), count: 17)) { (result, element) in
+            //                    result[element.0][element.1] = Int(element.2)
+            //                }
+            //
+            //            // Print the reshaped array
+            //            for row in reshapedArray {
+            //                print(row)
+            //            }
             
             interval = Date().timeIntervalSince(startDate) * 1000
             print("time taken = \(interval) ms")
@@ -211,10 +211,10 @@ class ModelHandler: NSObject {
         // Calculate the number of rows and columns in the 2D array.
         let numRows = array.count / columns
         let numColumns = columns
-
+        
         // Create a new 2D array with the calculated dimensions.
         var twoDArray = Array(repeating: Array(repeating: Float32(), count: numColumns), count: numRows)
-
+        
         // Iterate over the 1D array and add each element to the 2D array, row by row.
         var index = 0
         for row in 0..<numRows {
@@ -223,7 +223,7 @@ class ModelHandler: NSObject {
                 index += 1
             }
         }
-
+        
         return twoDArray
     }
     
@@ -327,7 +327,7 @@ class ModelHandler: NSObject {
         let pixelBufferType = CVPixelBufferGetPixelFormatType(buffer)
         
         assert(pixelBufferType == kCVPixelFormatType_32BGRA ||
-            pixelBufferType == kCVPixelFormatType_32ARGB)
+               pixelBufferType == kCVPixelFormatType_32ARGB)
         
         let inputImageRowBytes = CVPixelBufferGetBytesPerRow(buffer)
         let imageChannels = 4
@@ -351,7 +351,7 @@ class ModelHandler: NSObject {
         guard let scaledImageBytes = malloc(Int(size.height) * scaledRowBytes) else {
             return nil
         }
-                
+        
         var scaledVImageBuffer = vImage_Buffer(data: scaledImageBytes,
                                                height: UInt(size.height),
                                                width: UInt(size.width),
@@ -394,7 +394,7 @@ class ModelHandler: NSObject {
         let fileExtension = fileInfo.extension
         guard let fileURL = Bundle.main.url(forResource: filename, withExtension: fileExtension) else {
             print("Labels file not found in bundle. Please add a labels file with name " +
-                "\(filename).\(fileExtension)")
+                  "\(filename).\(fileExtension)")
             return labelData
         }
         do {
@@ -403,7 +403,7 @@ class ModelHandler: NSObject {
         } catch {
             print("Labels file named \(filename).\(fileExtension) cannot be read.")
         }
-
+        
         return labelData
     }
     
@@ -483,7 +483,7 @@ class ModelHandler: NSObject {
     func parsePoseYOLOv8(results: [VNCoreMLFeatureValueObservation], modelType: ModelType) -> [Prediction] {
         guard let observation = results.first else { return [] }
         guard let outputArray = observation.featureValue.multiArrayValue else { return [] }
-
+        
         var result: Result<PoseEstimationOutput, PoseEstimationError>
         
         let gridHeight = outputArray.shape[1].intValue
@@ -491,27 +491,27 @@ class ModelHandler: NSObject {
         let classesNum = gridHeight - 4 - 17*3//self.keypointsNum * self.keypointsDim
         let threshold: Float = 0.25//self.confidenceThreshold
         let inputWidth = self.inputWidth
-
+        
         var predictions = [Prediction]()
-
+        
         for j in 0..<gridWidth {
             var classIndex = -1
             var maxScore: Float = 0.0
-
+            
             for i in 4..<4 + classesNum {
                 let score = outputArray[(i * gridWidth) + j].floatValue
                 if score > maxScore {
                     classIndex = i - 4
                     maxScore = score
-                 }
+                }
             }
-
+            
             if maxScore > threshold {
                 var x: Float = outputArray[(0 * gridWidth) + j].floatValue
                 var y = outputArray[(1 * gridWidth) + j].floatValue
                 var w = outputArray[(2 * gridWidth) + j].floatValue
                 var h = outputArray[(3 * gridWidth) + j].floatValue
-
+                
                 x -= w/2
                 y -= h/2
                 let cgrectX = CGFloat(x/Float(inputWidth))
@@ -525,16 +525,16 @@ class ModelHandler: NSObject {
                 var visibleArray = [NSNumber]()
                 
                 var twodArrayForYolo = [[CGFloat]]()
-
+                
                 for i in stride(from: 4 + classesNum, to: gridHeight, by: 3){
                     let x = outputArray[((i + 0) * gridWidth) + j].floatValue
                     let y = outputArray[((i + 1) * gridWidth) + j].floatValue
                     let v = outputArray[((i + 2) * gridWidth) + j].floatValue
-
+                    
                     let point = CGPoint(x: Double(x / Float(inputWidth)), y: Double(1.0 - y / Float(inputWidth)))
                     
                     //let visible = v > 0 ? kVisible : kNotVisibleNotLabeled
-
+                    
                     twodArrayForYolo.append([point.x, point.y])
                     pointArray.append(NSValue(cgPoint: point))
                     //visibleArray.append(NSNumber(integerLiteral: visible))
@@ -550,13 +550,13 @@ class ModelHandler: NSObject {
                     
                     // Record the end time
                     let endTime = DispatchTime.now()
-
+                    
                     // Calculate the execution time in nanoseconds
                     let nanoTime = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
-
+                    
                     // Convert the execution time to milliseconds
                     let executionTimeInMilliseconds = Double(nanoTime) / 1_000_000
-
+                    
                     print("PAM Execution Time: \(executionTimeInMilliseconds) milliseconds")
                     
                     //return outputs
@@ -568,11 +568,11 @@ class ModelHandler: NSObject {
                                             pointArray: pointArray,
                                             visibleArray: visibleArray)
                 
-
+                
                 predictions.append(prediction)
             }
         }
-
+        
         predictions = getPredictionsNMS(predictions: predictions)
         
         return predictions
@@ -581,7 +581,7 @@ class ModelHandler: NSObject {
     func parsePoseYOLOv8ForPAM(results: [VNCoreMLFeatureValueObservation], modelType: ModelType) -> [Float32] {
         guard let observation = results.first else { return [] }
         guard let outputArray = observation.featureValue.multiArrayValue else { return [] }
-
+        
         var result: Result<PoseEstimationOutput, PoseEstimationError>
         
         let gridHeight = outputArray.shape[1].intValue
@@ -589,27 +589,27 @@ class ModelHandler: NSObject {
         let classesNum = gridHeight - 4 - 17*3//self.keypointsNum * self.keypointsDim
         let threshold: Float = 0.25//self.confidenceThreshold
         let inputWidth = self.inputWidth
-
+        
         var predictions = [Prediction]()
-
+        
         for j in 0..<gridWidth {
             var classIndex = -1
             var maxScore: Float = 0.0
-
+            
             for i in 4..<4 + classesNum {
                 let score = outputArray[(i * gridWidth) + j].floatValue
                 if score > maxScore {
                     classIndex = i - 4
                     maxScore = score
-                 }
+                }
             }
-
+            
             if maxScore > threshold {
                 var x: Float = outputArray[(0 * gridWidth) + j].floatValue
                 var y = outputArray[(1 * gridWidth) + j].floatValue
                 var w = outputArray[(2 * gridWidth) + j].floatValue
                 var h = outputArray[(3 * gridWidth) + j].floatValue
-
+                
                 x -= w/2
                 y -= h/2
                 let cgrectX = CGFloat(x/Float(inputWidth))
@@ -623,16 +623,16 @@ class ModelHandler: NSObject {
                 var visibleArray = [NSNumber]()
                 
                 var twodArrayForYolo = [[CGFloat]]()
-
+                
                 for i in stride(from: 4 + classesNum, to: gridHeight, by: 3){
                     let x = outputArray[((i + 0) * gridWidth) + j].floatValue
                     let y = outputArray[((i + 1) * gridWidth) + j].floatValue
                     let v = outputArray[((i + 2) * gridWidth) + j].floatValue
-
+                    
                     let point = CGPoint(x: Double(x / Float(inputWidth)), y: Double(1.0 - y / Float(inputWidth)))
                     
                     //let visible = v > 0 ? kVisible : kNotVisibleNotLabeled
-
+                    
                     twodArrayForYolo.append([point.x, point.y])
                     pointArray.append(NSValue(cgPoint: point))
                     //visibleArray.append(NSNumber(integerLiteral: visible))
@@ -648,13 +648,13 @@ class ModelHandler: NSObject {
                     
                     // Record the end time
                     let endTime = DispatchTime.now()
-
+                    
                     // Calculate the execution time in nanoseconds
                     let nanoTime = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
-
+                    
                     // Convert the execution time to milliseconds
                     let executionTimeInMilliseconds = Double(nanoTime) / 1_000_000
-
+                    
                     print("PAM Execution Time: \(executionTimeInMilliseconds) milliseconds")
                     
                     return outputs
@@ -666,37 +666,37 @@ class ModelHandler: NSObject {
                                             pointArray: pointArray,
                                             visibleArray: visibleArray)
                 
-
+                
                 predictions.append(prediction)
             }
         }
-
+        
         predictions = getPredictionsNMS(predictions: predictions)
         
         return []
     }
-
+    
     func getPredictionsNMS(predictions: [Prediction]) -> [Prediction] {
         guard predictions.count >= 2 else { return predictions }
-
+        
         let sortedPredictions = predictions.sorted { $0.confidence > $1.confidence }
         var keep = [Bool](repeating: true, count: sortedPredictions.count)
         var predictionsNMS = [Prediction]()
-
+        
         for i in 0..<sortedPredictions.count {
             if keep[i] {
                 predictionsNMS.append(sortedPredictions[i])
-
+                
                 let prediction = sortedPredictions[i]
                 let bbox1 = prediction.boundingBox
-
+                
                 for j in i + 1..<sortedPredictions.count {
                     if keep[j] {
                         let predictionJ = sortedPredictions[j]
                         let bbox2 = predictionJ.boundingBox
                         let threshold: Float = 0.5//self.nmsThreshold
                         let iou = IoU(rect1: bbox1, rect2: bbox2)
-
+                        
                         if iou > threshold {
                             keep[j] = false
                         }
@@ -704,21 +704,21 @@ class ModelHandler: NSObject {
                 }
             }
         }
-
+        
         return predictionsNMS
     }
-
+    
     func IoU(rect1: CGRect, rect2: CGRect) -> Float {
-//        let intersectionRect = rect1.intersection(rect2)
-//        let unionRect = rect1.union(rect2)
-//        
-//        if intersectionRect.isEmpty {
-//            return 0.0
-//        }
-//        
-//        let iou = intersectionRect.width * intersectionRect.height / (unionRect.width * unionRect.height)
-//        
-//        return Float(iou)
+        //        let intersectionRect = rect1.intersection(rect2)
+        //        let unionRect = rect1.union(rect2)
+        //
+        //        if intersectionRect.isEmpty {
+        //            return 0.0
+        //        }
+        //
+        //        let iou = intersectionRect.width * intersectionRect.height / (unionRect.width * unionRect.height)
+        //
+        //        return Float(iou)
         
         let areaA = rect1.size.width * rect1.size.height
         if areaA <= 0 { return 0 }
@@ -741,7 +741,7 @@ class ModelHandler: NSObject {
     func convert2DArrayto1D(twoDArray: [[CGFloat]]) -> [CGFloat]{
         // Initialize an empty 1D array
         var oneDArray: [CGFloat] = []
-
+        
         // Iterate through the 2D array and append elements to the 1D array
         for row in twoDArray {
             for element in row {
@@ -750,6 +750,462 @@ class ModelHandler: NSObject {
         }
         
         return oneDArray
+    }
+    
+    /// RUN YOLO NAS
+    func runModelyolonas(modelType: ModelType, onPixelBuffer pixelBuffer: CVPixelBuffer) throws -> [Prediction] {
+        let sourcePixelFormat = CVPixelBufferGetPixelFormatType(pixelBuffer)
+        assert(sourcePixelFormat == kCVPixelFormatType_32ARGB ||
+               sourcePixelFormat == kCVPixelFormatType_32BGRA ||
+               sourcePixelFormat == kCVPixelFormatType_32RGBA)
+        //        let inputWidth1 = self.inputWidth
+        //        let inputHeight1 = self.inputHeight
+        //        let imageChannels = self.inputChannels
+        var interval: TimeInterval
+        let startDate = Date()
+        let inputWidth1 = 640
+        let inputHeight1 = 640
+        let imageChannels = 3
+        assert(imageChannels >= inputChannels)
+        let imageWidthReal = CVPixelBufferGetWidth(pixelBuffer)
+        let imageHeightReal = CVPixelBufferGetHeight(pixelBuffer)
+        print("imageWidth \(imageWidthReal) imageHeight \(imageHeightReal)")
+        //Preprocess the image
+        let scaledSize = CGSize(width: inputWidth1 , height: inputHeight1 )
+        guard let scaledPixelBuffer = preprocess(ofSize: scaledSize, pixelBuffer) else {
+            return []
+        }
+        
+        //let scaledPixelBuffer = pixelBuffer
+        
+        let inputName = "input.1"
+        guard let rgbData = rgbDataFromBuffer(
+            scaledPixelBuffer,
+            byteCount: batchSize * inputChannels * inputHeight1 * inputWidth1 * 4//1228800//
+        ) else {
+            print("Failed to convert the image buffer to RGB data.")
+            return []
+        }
+        
+        print("rgbdata yolonas = \(rgbData))")
+        let inputShape: [NSNumber] = [batchSize as NSNumber,
+                                      inputChannels as NSNumber,
+                                      inputHeight1 as NSNumber,
+                                      inputWidth1 as NSNumber,]
+        print("inputShape \(inputShape)")
+        var rgb:[Float] = []
+        for i in stride(from: 0, to: rgbData.count, by: 1) {
+            
+            
+            rgb.append(Float(rgbData[i]))
+        }
+        let inputTensorData = NSMutableData(bytes: rgb, length: rgb.count * MemoryLayout<Float>.size)
+        print("input tensor data = \(inputTensorData.description) \(inputTensorData.count)")
+        do
+        {let inputTensor = try ORTValue(tensorData: inputTensorData,//NSMutableData(data: rgbData),
+                                        elementType: ORTTensorElementDataType.float,
+                                        shape: inputShape )
+        }
+        catch {
+            // Catch any other errors that conform to the Error protocol
+            print("An error occurred: \(error)")
+        }
+        
+        let inputTensor = try ORTValue(tensorData: inputTensorData,
+                                       elementType: ORTTensorElementDataType.float,
+                                       shape: inputShape)
+        // Run ORT InferenceSession
+        print("created ort value")
+        
+        let outputs = try session.run(withInputs: [inputName: inputTensor],
+                                      outputNames: ["1297",
+                                                    "1289","1306","1307"],
+                                      runOptions: nil)
+        print("ran the model")
+        interval = Date().timeIntervalSince(startDate) * 1000
+        guard let rawOutputValue_1 = outputs["1297"] else {
+            throw OrtModelError.error("failed to get model output_1")
+        }
+        let rawOutputData_1 = try rawOutputValue_1.tensorData() as Data
+        guard let outputArr_1: [Float32] = Array(unsafeData: rawOutputData_1) else {
+            return []
+        }
+        
+        guard let rawOutputValue_2 = outputs["1289"] else {
+            throw OrtModelError.error("failed to get model output_1")
+        }
+        let rawOutputData_2 = try rawOutputValue_2.tensorData() as Data
+        guard let outputArr_2: [Float32] = Array(unsafeData: rawOutputData_2) else {
+            return []
+        }
+        guard let rawOutputValue_3 = outputs["1306"] else {
+            throw OrtModelError.error("failed to get model output_1")
+        }
+        let rawOutputData_3 = try rawOutputValue_3.tensorData() as Data
+        guard let outputArr_3: [Float32] = Array(unsafeData: rawOutputData_3) else {
+            return []
+        }
+        
+        print("YOLONAS OUTPUT== \(outputArr_3[0..<50])")
+        //print("YOLONAS OUTPUT SIZE== \(outputArr_3.count)")
+        //convert flattened output into 3d array
+        //let dim1 = 1
+        //let dim2 = 56
+        //let dim3 = 8400
+        
+        // Check if the total number of elements matches the size of the 1D array
+        //assert(dim1 * dim2 * dim3 == arr.count, "Array size mismatch")
+        
+        // Create a 3D array with the specified dimensions
+        
+        //print("size converted yolonas == \(resultArray)")
+        //var predictions = outputArr_3
+        //var batch_size = 1
+        guard let rawOutputValue_4 = outputs["1307"] else {
+            throw OrtModelError.error("failed to get model output_0")
+        }
+        let rawOutputData_4 = try rawOutputValue_4.tensorData() as Data
+        guard let outputArr_4: [Float32] = Array(unsafeData: rawOutputData_4) else {
+            return []
+        }
+        print("YOLONAS OUTPUT SIZE box== \(outputArr_1.count)")
+        print("YOLONAS OUTPUT SIZE score== \(outputArr_2.count)")
+        print("YOLONAS OUTPUT SIZE xy== \(outputArr_3.count)")
+        print("YOLONAS OUTPUT SIZE v== \(outputArr_4.count)")
+        
+        var resultArray: [Float] = []
+        var i = 0
+        var bbox_c=0
+        var score_c=0
+        var xy_c = 0
+        var v_c=0
+        var image_index = 0
+        print("YOLONAS OUTPUT  box== \(outputArr_1[0..<8])")
+        print("YOLONAS OUTPUT  score== \(outputArr_2[0..<100])")
+        print("YOLONAS OUTPUT  xy== \(outputArr_3[0..<34])")
+        print("YOLONAS OUTPUT  v== \(outputArr_4[0..<17])")
+        /* while(i < 470400-55){
+         //            resultArray.append(Float(image_index))
+         //            image_index += 1
+         resultArray.append(outputArr_1[bbox_c])
+         bbox_c+=1
+         resultArray.append(outputArr_1[bbox_c])
+         bbox_c+=1
+         resultArray.append(outputArr_1[bbox_c])
+         bbox_c+=1
+         resultArray.append(outputArr_1[bbox_c])
+         bbox_c+=1
+         
+         resultArray.append(outputArr_2[score_c])
+         score_c+=1
+         var j = 0
+         while(j<17){
+         resultArray.append(outputArr_3[xy_c])
+         xy_c+=1
+         resultArray.append(outputArr_3[xy_c])
+         xy_c+=1
+         resultArray.append(outputArr_4[v_c])
+         v_c+=1
+         j+=1
+         }
+         i+=56
+         }
+         */
+        var pred: Prediction =  Prediction(labelIndex: 0,
+                                           confidence: 0.0,
+                                           boundingBox: CGRect(),
+                                           pointArray: [NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0)))],
+                                           visibleArray: [NSNumber(value: 0)])
+        var p: Float = 0.0
+        /*while(i < 470400-55){
+         
+         resultArray.append(outputArr_1[bbox_c])
+         bbox_c+=1
+         resultArray.append(outputArr_1[bbox_c])
+         bbox_c+=1
+         resultArray.append(outputArr_1[bbox_c])
+         bbox_c+=1
+         resultArray.append(outputArr_1[bbox_c])
+         bbox_c+=1
+         
+         resultArray.append(outputArr_2[score_c])
+         score_c+=1
+         var j = 0
+         while(j<17){
+         resultArray.append(outputArr_3[xy_c])
+         xy_c+=1
+         resultArray.append(outputArr_3[xy_c])
+         xy_c+=1
+         resultArray.append(outputArr_4[v_c])
+         v_c+=1
+         j+=1
+         }
+         var index = i
+         i+=56
+         }
+         */
+        
+        for i in stride(from: 0, to: 8400 * 4, by: 4)
+        {
+            
+            resultArray.append(outputArr_1[i])
+        }
+        for i in stride(from: 1, to: 8400 * 4, by: 4)
+        {
+            
+            resultArray.append(outputArr_1[i])
+            
+        }
+        for i in stride(from: 2, to: 8400 * 4, by: 4)
+        {
+            
+            resultArray.append(outputArr_1[i])
+        }
+        for i in stride(from: 3, to: 8400 * 4, by: 4)
+        {
+            
+            resultArray.append(outputArr_1[i])
+        }
+        
+        
+        for i in stride(from: 0, to: 8400, by: 1)
+        {
+            resultArray.append(outputArr_2[i])
+        }
+        
+        
+        for j in stride(from: 0, to: 34, by: 2)
+        {
+            
+            for i in stride(from: j, to: 8400 * 34, by: 34)
+            {
+                
+                
+                resultArray.append(outputArr_3[i])
+                
+                
+                
+            }
+            for i in stride(from: j, to: 8400 * 34, by: 34)
+            {
+                
+                
+                
+                resultArray.append(outputArr_3[i + 1])
+                
+                
+                
+            }
+            for i in stride(from: j, to: 8400 * 34, by: 34)
+            {
+                
+                
+                
+                resultArray.append(outputArr_4[i / 2])
+                
+                
+            }
+            
+        }
+        
+        
+        //            score_c+=1
+        //            var j = 0
+        //            while(j<17){
+        //                resultArray.append(outputArr_3[xy_c])
+        //                xy_c+=1
+        //                resultArray.append(outputArr_3[xy_c])
+        //                xy_c+=1
+        //                resultArray.append(outputArr_4[v_c])
+        //                v_c+=1
+        //                j+=1
+        //            }
+        //            var index = i
+        //            i+=56
+        //        }
+        //
+        
+        //                    var pointArray = [NSValue]()
+        //                    var visibleArray = [NSNumber]()
+        //                               var x: Float = outputArr_1[bbox_c]
+        //                    bbox_c+=1
+        //                              var y = outputArr_1[bbox_c]
+        //                    bbox_c+=1
+        //                               var w = outputArr_1[bbox_c]
+        //                    bbox_c+=1
+        //                               var h = outputArr_1[bbox_c]
+        //                    bbox_c+=1
+        //
+        //                    let cgrectX = CGFloat(x / 640)
+        //
+        //                    let cgrectY = CGFloat(y )
+        //
+        //                    let cgrectW = CGFloat(w - x )
+        //
+        //                    let cgrectH = CGFloat( h - y)
+        //
+        //                    let rect = CGRect(x: cgrectX, y: cgrectY, width: cgrectW, height: cgrectH)
+        //                    let predScores = outputArr_2[score_c]
+        //                    score_c+=1
+        //
+        //                   var j = 0
+        //                    while(j<17){
+        //                        let x = outputArr_3[xy_c] / 640
+        //                        xy_c+=1
+        //                        let y = (outputArr_3[xy_c] ) / 640
+        //                        xy_c+=1
+        //                        let v = outputArr_4[v_c]
+        //                        v_c+=1
+        //                        j+=1
+        //
+        //                        let point = CGPoint(x: Double(x ), y: Double(y ))
+        //
+        //
+        //                        pointArray.append(NSValue(cgPoint: point))
+        //                    }
+        //
+        //
+        //                    //visibleArray.append(NSNumber(integerLiteral: visible))
+        //
+        //
+        //
+        //                    if predScores > p{
+        //                        p = predScores
+        //                        pred = Prediction(labelIndex: index,
+        //                                                confidence: predScores,
+        //                                                boundingBox: rect,
+        //                                                pointArray: pointArray,
+        //                                                visibleArray: visibleArray)
+        //
+        //                    }
+        //
+        //                    i += 56
+        //                }
+        print("result of yolonas after reshaping= \(resultArray[0..<112])")
+        print("result of yolonas shape= \(resultArray.count)")
+        let  pp = yolonaspostprocess(predictions: resultArray)
+        //        var prediction: Prediction
+        //        var pred1:[Prediction] = []
+        //        i = 0
+        //
+        //        //let predictions = getPredictionsNMS(predictions:pp)
+        //        print("pp length\(pp.underestimatedCount)")
+        //        for prediction in pp{
+        //             return prediction
+        //             //pred[i] = prediction
+        //            //pred1.insert(contentsOf: prediction, at: i)
+        //            i+=1
+        //        }
+        //pred1 = getPredictionsNMS(predictions: pred1)
+        print("pp is = \(pp[0])")
+        //return pred1
+        //return []//pred
+        interval = Date().timeIntervalSince(startDate) * 1000
+        delegate?.sendTheInference(inferenceTime: interval)
+        return pp
+        // return [prediction]
+    }
+    /// YOLO NAS- POSTPROCESSING
+    ///
+    ///
+    
+    func yolonaspostprocess(predictions: [Float]) -> [Prediction] {
+        let outputArray = predictions
+        //print("output array= \(outputArray)\n")
+        //var result: Result<PoseEstimationOutput, PoseEstimationError>
+        print("inside yolonas postprocess")
+        let gridHeight = 56//outputArray[1]
+        let gridWidth = 8400//outputArray[2]
+        let classesNum = 1//gridHeight - 4 - 17*3//self.keypointsNum * self.keypointsDim
+        let threshold: Float = 0.5//self.confidenceThreshold
+        let inputWidth = self.inputWidth
+        
+        var prediction: Prediction = Prediction(labelIndex: 0,
+                                                confidence: 0.0,
+                                                boundingBox: CGRect(),
+                                                pointArray: [NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0)))],
+                                                /*[NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0))),NSValue(cgPoint: CGPoint(x: Double(0.0 ), y: Double(0.0)))]*/
+                                                visibleArray: [NSNumber(value: 0)])
+        
+        
+        for j in 0..<gridWidth  {
+            //for j in 0..<gridHeight  {
+            
+            var classIndex = -1
+            var maxScore: Float = 0.0
+            
+            for i in 4..<4 + classesNum {
+                print("index = \((j * gridHeight) + i)")
+                let score = outputArray[(i * gridWidth) + j]// / Float(inputWidth)
+                //let score = outputArray[(j * gridHeight) + i]
+                print("score = \(score)")
+                if score > maxScore {
+                    classIndex = i - 4
+                    maxScore = score
+                }
+            }
+            print("MAXSCORE- \(maxScore)")
+            if maxScore > 0.0025 {
+                print("inside yolonas postprocess if")
+                var x: Float = outputArray[(0 * gridWidth) + j]
+                var y = outputArray[(1 * gridWidth) + j]
+                var w = outputArray[(2 * gridWidth) + j]
+                var h = outputArray[(3 * gridWidth) + j]
+                //                var x: Float = outputArray[(j * gridHeight) + 0]
+                //                var y = outputArray[(j * gridHeight) + 1]
+                //                var w = outputArray[(j * gridHeight) + 2]
+                //                var h = outputArray[(j * gridHeight) + 3]
+                //
+                //x -= w///2
+                //y -= h///2
+                let cgrectX = CGFloat(x / Float(inputWidth))
+                let cgrectY = CGFloat(1.0 - (y)/Float(inputWidth))
+                let cgrectW = CGFloat((w - x)  / Float(inputWidth))
+                let cgrectH = CGFloat((h - y) / Float(inputWidth))
+                
+                let rect = CGRect(x: cgrectX, y: cgrectY, width: cgrectW, height: cgrectH)
+                
+                var pointArray = [NSValue]()
+                var visibleArray = [NSNumber]()
+                
+                var twodArrayForYolo = [[CGFloat]]()
+                
+                for i in stride(from: 4 + classesNum, to: gridHeight, by: 3){
+                    print(" iindex==\(((i + 0) * gridWidth) + j)")
+                    let x = outputArray[((i + 0) * gridWidth) + j]
+                    let y = outputArray[((i + 1) * gridWidth) + j]
+                    let v = outputArray[((i + 2) * gridWidth) + j]
+                    //                    let x = outputArray[(j * gridHeight) + (i + 0)]
+                    //                    let y = outputArray[(j * gridHeight) + (i + 1)]
+                    //                    let v = outputArray[(j * gridHeight) + (i + 2)]
+                    //
+                    let point = CGPoint(x: Double(x / Float(inputWidth)), y: Double(1.0 - y / Float(inputWidth)))
+                    // let point = CGPoint(x: Double(x ), y: Double(y))
+                    
+                    let visible = v > 0 ? 1:0//kVisible : kNotVisibleNotLabeled
+                    
+                    twodArrayForYolo.append([point.x, point.y])
+                    pointArray.append(NSValue(cgPoint: point))
+                    visibleArray.append(NSNumber(integerLiteral: visible))
+                }
+                prediction = Prediction(labelIndex: classIndex,
+                                        confidence: maxScore,
+                                        boundingBox: rect,
+                                        pointArray: pointArray,
+                                        visibleArray: visibleArray)
+                
+                
+                //predictions.append(prediction)
+                print("YOLONAS array - \(pointArray))")
+                print("YOLONAS bb - \(rect))")
+                print("YOLONAS maxScore - \(maxScore))")
+                
+            }
+        }
+        
+        //predictions = getPredictionsNMS(predictions: predictions)
+        //print("final 17*3 array yolonas= \(predictions)")
+        return [prediction]
     }
 }
 
@@ -775,16 +1231,16 @@ extension Array {
     // Create a new array from the bytes of the given unsafe data.
     init?(unsafeData: Data) {
         guard unsafeData.count % MemoryLayout<Element>.stride == 0 else { return nil }
-        #if swift(>=5.0)
+#if swift(>=5.0)
         self = unsafeData.withUnsafeBytes { .init($0.bindMemory(to: Element.self)) }
-        #else
+#else
         self = unsafeData.withUnsafeBytes {
             .init(UnsafeBufferPointer<Element>(
                 start: $0,
                 count: unsafeData.count / MemoryLayout<Element>.stride
             ))
         }
-        #endif // swift(>=5.0)
+#endif // swift(>=5.0)
     }
 }
 

@@ -11,10 +11,11 @@ import UIKit
 class DrawingJointView: UIView {
     
     static let threshold = 0.23
+    var currModelType: ModelType = .MODEL_CPM
     
     // the count of array may be <#14#> when use PoseEstimationForMobile's model
     private var keypointLabelBGViews: [UIView] = []
-
+    
     public var bodyPoints: [PredictedPoint?] = [] {
         didSet {
             self.setNeedsDisplay()
@@ -26,6 +27,13 @@ class DrawingJointView: UIView {
         didSet {
             self.setNeedsDisplay()
             self.drawKeypointsYOLO(with: bodyPointsForYOLO)
+        }
+    }
+    
+    public var bodyPointsForYOLONAS: [Prediction] = [] {
+        didSet {
+            self.setNeedsDisplay()
+            self.drawKeypointsYOLONAS(with: bodyPointsForYOLO)
         }
     }
     
@@ -76,12 +84,55 @@ class DrawingJointView: UIView {
             if PoseEstimationForMobileConstant.pointLabels.count == bodyPoints.count {
                 let _ = PoseEstimationForMobileConstant.connectedPointIndexPairs.map { pIndex1, pIndex2 in
                     if let bp1 = self.bodyPoints[pIndex1], bp1.maxConfidence > DrawingJointView.threshold,
-                        let bp2 = self.bodyPoints[pIndex2], bp2.maxConfidence > DrawingJointView.threshold {
+                       let bp2 = self.bodyPoints[pIndex2], bp2.maxConfidence > DrawingJointView.threshold {
                         let p1 = bp1.maxPoint
                         let p2 = bp2.maxPoint
                         let point1 = CGPoint(x: p1.x * size.width, y: p1.y*size.height)
                         let point2 = CGPoint(x: p2.x * size.width, y: p2.y*size.height)
                         drawLine(ctx: ctx, from: point1, to: point2, color: color)
+                    }
+                }
+            }
+            // draw yolo nas
+            else if(currModelType == .YOLO_NAS_POSE_L){
+                print("inside draw function yolonas")
+                let colorYOLO = UIColor.green.cgColor
+                if let bodyPointsForYOLONAS = self.bodyPointsForYOLONAS.first {
+                    let _ = PoseEstimationForMobileConstant.connectedPointsIndexPairsYOLO.map { pIndex1, pIndex2 in
+                        let bbox = bodyPointsForYOLONAS.boundingBox
+                        
+                        let scaleX = (size.width / bbox.size.width)
+                        let scaleY = (size.height / bbox.size.height)
+                        let bp1 = bodyPointsForYOLONAS.pointArray[pIndex1]
+                        let bp2 = bodyPointsForYOLONAS.pointArray[pIndex2]
+                        let scaledBoundingBox = CGRect(
+                            x: bbox.origin.x ,
+                            y: bbox.origin.y ,
+                            width: scaleX,
+                            height: scaleY
+                        )
+                        // Draw the bounding box
+                        // Draw the bounding box
+                        ctx.setStrokeColor(UIColor.blue.cgColor)
+                        ctx.setLineWidth(10.0)
+                        ctx.addRect(scaledBoundingBox)
+                        ctx.strokePath()
+                        if bodyPointsForYOLONAS.confidence > 0.0023 {//Float(DrawingJointView.threshold)  {
+                            let p1 = bp1.cgPointValue
+                            let p2 = bp2.cgPointValue
+                            
+                            let point1 = CGPoint(
+                                x: p1.x,//((p1.x * scaleX ) - bbox.maxX ),
+                                y: p1.y//((p1.y * scaleY ) - bbox.maxY ) * (-1)
+                            )
+                            let point2 = CGPoint(
+                                x: p2.x, //((p2.x * scaleX ) - bbox.maxX ),
+                                y: p2.y//((p2.y * scaleY ) - bbox.maxY ) * (-1)
+                            )
+                            print("yolonas - going to draw line")
+                            
+                            drawLine(ctx: ctx, from: point1, to: point2, color: colorYOLO)
+                        }
                     }
                 }
             }
@@ -103,14 +154,14 @@ class DrawingJointView: UIView {
                         )
                         // Draw the bounding box
                         // Draw the bounding box
-//                        ctx.setStrokeColor(UIColor.blue.cgColor)
-//                        ctx.setLineWidth(10.0)
-//                        ctx.addRect(scaledBoundingBox)
-//                        ctx.strokePath()
+                        //                        ctx.setStrokeColor(UIColor.blue.cgColor)
+                        //                        ctx.setLineWidth(10.0)
+                        //                        ctx.addRect(scaledBoundingBox)
+                        //                        ctx.strokePath()
                         if bodyPointsForYOLO.confidence > Float(DrawingJointView.threshold) && bodyPointsForYOLO.confidence > Float(DrawingJointView.threshold) {
                             let p1 = bp1.cgPointValue
                             let p2 = bp2.cgPointValue
-
+                            
                             let point1 = CGPoint(
                                 x: ((p1.x * scaleX ) - bbox.maxX ),
                                 y: ((p1.y * scaleY ) - bbox.maxY ) * (-1)
@@ -160,6 +211,31 @@ class DrawingJointView: UIView {
             } else {
                 keypointLabelBGViews[index].center = CGPoint(x: -4000, y: -4000)
                 keypointLabelBGViews[index].alpha = minAlpha
+            }
+        }
+    }
+    
+    private func drawKeypointsYOLONAS(with n_kpoints: [Prediction]) {
+        print("drawing yolonas" )
+        currModelType = .YOLO_NAS_POSE_L
+        let imageFrame = keypointLabelBGViews.first?.superview?.frame ?? .zero
+        
+        let minAlpha: CGFloat = 0.4
+        let maxAlpha: CGFloat = 1.0
+        let maxC: Double = 0.6
+        let minC: Double = 0.1
+        
+        if n_kpoints.count != keypointLabelBGViews.count {
+            //setUpLabels(with: n_kpoints.count)
+        }
+        
+        if let firstValue = n_kpoints.first {
+            for indexValue in firstValue.pointArray{
+                let x = indexValue.cgPointValue.x * imageFrame.width
+                let y = indexValue.cgPointValue.y * imageFrame.height
+                //keypointLabelBGViews[index].center = CGPoint(x: x, y: y)
+                let cRate = (Double(firstValue.confidence) - minC)/(maxC - minC)
+                //keypointLabelBGViews[index].alpha = (maxAlpha - minAlpha) * CGFloat(cRate) + minAlpha
             }
         }
     }
@@ -231,46 +307,46 @@ struct PoseEstimationForMobileConstant {
         (12, 13),   // lknee-lankle
     ]
     
-//    (16,14),
-//    (14,12),
-//    (17,15),
-//    (15,13),
-//    (12,13),
-//    (6,12),
-//    (7,13),
-//    (6,7),
-//    (6,8),
-//    (7,9),
-//    (8,10),
-//    (9,11),
-//    (2,3),
-//    (1,2),
-//    (1,3),
-//    (2,4),
-//    (3,5),
-//    (4,6),
-//    (5,7),
+    //    (16,14),
+    //    (14,12),
+    //    (17,15),
+    //    (15,13),
+    //    (12,13),
+    //    (6,12),
+    //    (7,13),
+    //    (6,7),
+    //    (6,8),
+    //    (7,9),
+    //    (8,10),
+    //    (9,11),
+    //    (2,3),
+    //    (1,2),
+    //    (1,3),
+    //    (2,4),
+    //    (3,5),
+    //    (4,6),
+    //    (5,7),
     static let connectedPointsIndexPairsYOLO: [(Int, Int)] = [
-    
-//        (15,13),
-//        (13,11),
-//        (16,14),
-//        (14,12),
-//        (11,12),
-//        (5,11),
-//        (6,12),
-//        (5,6),
-//        (5,7),
-//        (6,8),
-//        (7,9),
-//        (8,10),
-//        (1,2),
-//        (0,1),
-//        (0,2),
-//        (1,3),
-//        (2,4),
-//        (3,5),
-//        (4,6),
+        
+        //        (15,13),
+        //        (13,11),
+        //        (16,14),
+        //        (14,12),
+        //        (11,12),
+        //        (5,11),
+        //        (6,12),
+        //        (5,6),
+        //        (5,7),
+        //        (6,8),
+        //        (7,9),
+        //        (8,10),
+        //        (1,2),
+        //        (0,1),
+        //        (0,2),
+        //        (1,3),
+        //        (2,4),
+        //        (3,5),
+        //        (4,6),
         
         (4,6),
         (3,5),
