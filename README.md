@@ -7,6 +7,7 @@
 ![swift-version](https://img.shields.io/badge/swift-4.2-red.svg)
 ![lisence](https://img.shields.io/badge/license-MIT-black.svg)
 
+INSTALLATION STEPS: [https://docs.google.com/document/d/18uT6iVrLsyC4ilKYqU0Z7uLvKQvSd9giPwFURIEycpY/edit](https://docs.google.com/document/d/18uT6iVrLsyC4ilKYqU0Z7uLvKQvSd9giPwFURIEycpY/edit)
 This project is Pose Estimation on iOS with Core ML.<br>If you are interested in iOS + Machine Learning, visit [here](https://github.com/motlabs/iOS-Proejcts-with-ML-Models) you can see various DEMOs.<br>
 
 
