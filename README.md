@@ -89,3 +89,8 @@ print("\nconverted!")
 ```
 
 The above is an example in which YOLO-NAS pose. Any models can be converted in the above way and used in the project.
+
+
+## Branch Information
+1. main - which contains the dropdown selection of models
+2. AD_YoloNas - which contains the implementation of yolo_nas_pose_l
