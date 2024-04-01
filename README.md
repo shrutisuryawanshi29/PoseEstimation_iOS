@@ -1,7 +1,7 @@
 # POSE ESTIMATION
 
 
-## REQUIREMENTS
+## Requirements
 * Xcode IDE: Download Xcode IDE from the link: ​​https://xcodereleases.com/
 * Cocoapods: https://guides.cocoapods.org/using/getting-started.html
 
