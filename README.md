@@ -5,7 +5,7 @@
 * Xcode IDE: Download Xcode IDE from the link: ​​https://xcodereleases.com/
 * Cocoapods: https://guides.cocoapods.org/using/getting-started.html
 
-## How to get the code?
+## How to get the iOS code?
 * Clone the project from the following repo: https://github.com/shrutisuryawanshi29/PoseEstimation_iOS
 * After it gets cloned, double click the file: PoseEstimation-CoreML.xcworkspace
 * This will open in your Xcode.
